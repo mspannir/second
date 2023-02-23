@@ -9,16 +9,16 @@ aws ec2 run-instances --image-id ami-0aa7d40eeae50c9a9 --count 1 --instance-type
 aws ec2 modify-instance-attribute \--instance-id i-0d83dde6db0ca282c \--instance-type "{\"Value\": \"t1.micro\"}"
 
 -----To describe the status of an instance
-aws ec2 describe-instance-status --instance-id  
+aws ec2 describe-instance-status --instance-id  i-0d83dde6db0ca282c
 
 ----To stop an Amazon EC2 instance
-aws ec2 stop-instances --instance-ids 
+aws ec2 stop-instances --instance-ids i-0d83dde6db0ca282c
 
 ----To start an Amazon EC2 instance
-aws ec2 start-instances --instance-ids 
+aws ec2 start-instances --instance-ids i-0d83dde6db0ca282c
 
-----To start an Amazon EC2 instance
-aws ec2 terminate-instances --instance-ids 
+----terminate a instance
+aws ec2 terminate-instances --instance-ids i-0d83dde6db0ca282c
 
 
 

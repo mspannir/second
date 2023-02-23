@@ -1,0 +1,91 @@
+==================================
+EC2 Instances create,update,delete
+==================================
+
+----create ec2 server using aws cli command 
+aws ec2 run-instances --image-id ami-0aa7d40eeae50c9a9 --count 1 --instance-type t2.micro --key-name EC2_Testing --security-group-ids sg-0fc8f0d0022b1f48d --subnet-id subnet-0540ffc3d8799a0d6
+
+----update ec2 instance
+aws ec2 modify-instance-attribute \--instance-id i-0d83dde6db0ca282c \--instance-type "{\"Value\": \"t1.micro\"}"
+
+-----To describe the status of an instance
+aws ec2 describe-instance-status --instance-id  i-0d83dde6db0ca282c
+
+----To stop an Amazon EC2 instance
+aws ec2 stop-instances --instance-ids i-0d83dde6db0ca282c
+
+----To start an Amazon EC2 instance
+aws ec2 start-instances --instance-ids i-0d83dde6db0ca282c
+
+----terminate a instance
+aws ec2 terminate-instances --instance-ids i-0d83dde6db0ca282c
+
+
+
+
+
+
+====================================================
+S3 create Bucket,Upload object,delete object&bucket
+====================================================
+
+----To create a bucket
+aws s3api create-bucket \--bucket Bucket_Name \--region Location_code
+EX: aws s3api create-bucket \--bucket selvambucket \--region us-east-1
+
+aws s3api create-bucket \ --bucket selvambucket \ --region us-east-1 \ --object-ownership BucketOwnerEnforced   ----To create a bucket with owner enforced
+
+----upload a files using aws cli commands
+>aws s3 cp "C:\foldername\file_name" s3://Bucket_Name/
+Ex: aws s3 cp "C:\s3files\SQLNOTES.txt" s3://selvambucket/
+EX: aws s3 cp "D:\panneer\aws_cli_commands_for_EC2_&_s3bucket.docx" s3://selvambucket/
+
+----list the object & Bucket using aws cli command
+aws s3 ls  ---list a bucket command
+aws s3 ls s3://bucket_name  ---list a object command
+EX: aws s3 ls s3://selvambucket
+
+----deletes an object
+>aws s3api delete-object --bucket Bucket_Name --key "Object_Name"
+Ex: aws s3api delete-object --bucket selvambucket --key "SQLNOTES.txt"
+
+
+----delete a bucket
+aws s3api delete-bucket --bucket Bucket_Name
+Ex: aws s3api delete-bucket --bucket selvambucket
+
+----Summarizing all prefixes and objects in a bucket
+aws s3 ls s3://mybucket --recursive --human-readable --summarize
+
+
+----Enabled (MFA)delete 
+aws s3api put-bucket-versioning --bucket selvambucket --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "arn:aws:iam::691261429482:mfa/panneer 798855"
+
+----Disabled (MFA)delete 
+aws s3api put-bucket-versioning --bucket selvambucket --versioning-configuration Status=Enabled,MFADelete=Disabled --mfa "arn:aws:iam::691261429482:mfa/panneer 637939"
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+
+
+INSERT INTO pet (name,owner,species,sex,birth,death) VALUES ("kumar","jai","dog",'M',"01/01/2000","01/10/2010");
+
+
+
+mysql -u admin -p -h mysqldbserver.c8ygd34zwvkj.us-east-1.rds.amazonaws.com
+
+
+mysql -u admin -p -h mydatabase123.c8ygd34zwvkj.us-east-1.rds.amazonaws.com
+
+
+
+CREATE TABLE STUDENTS(STUD_ID NUMBER(10),COURSE_NAME VARCHAR2(10),LOCTION VARCHAR2(10),GENDER VARCHAR2(10),PHONE_NO NUMBER(10));
